@@ -464,9 +464,9 @@ runs:
           INSTALL_DTBS_PATH="${OUT_DIR}/gki-kernel/dtb_staging"
           MAKE_GOALS="dtbs_install"
 
-          echo " Installing dtbs to staging directory"
+          echo " Installing dtbs to staging directory (serial to avoid install -D race)"
           set -x
-          ( cd "${OUT}" && make "${MAKE_FLAGS[@]}" O="${OUT}" INSTALL_DTBS_PATH="${INSTALL_DTBS_PATH}" DTB_TYPES="${DTB_TYPES}" ${MAKE_GOALS} )
+          ( cd "${OUT}" && make "${MAKE_FLAGS[@]}" -j1 O="${OUT}" INSTALL_DTBS_PATH="${INSTALL_DTBS_PATH}" DTB_TYPES="${DTB_TYPES}" ${MAKE_GOALS} )
           set +x
           _line
         else
@@ -526,9 +526,9 @@ runs:
           MAKE_GOALS="dtbs_install"
           INSTALL_DTBS_PATH="${OUT_DIR}/msm-kernel/dtb_staging"
           
-          echo " Installing dtbs to staging directory"
+          echo " Installing dtbs to staging directory (serial to avoid install -D race)"
           set -x
-          ( cd "${OUT}" && make "${MAKE_FLAGS[@]}" O="${OUT}" INSTALL_DTBS_PATH="${INSTALL_DTBS_PATH}" DTB_TYPES="${DTB_TYPES}" ${MAKE_GOALS} )
+          ( cd "${OUT}" && make "${MAKE_FLAGS[@]}" -j1 O="${OUT}" INSTALL_DTBS_PATH="${INSTALL_DTBS_PATH}" DTB_TYPES="${DTB_TYPES}" ${MAKE_GOALS} )
           set +x
           _line
         fi
@@ -1817,4 +1817,3 @@ runs:
           echo "> ## CCache Statistics :"
           echo "> $(ccache -s -v)"
         } >> "${GITHUB_STEP_SUMMARY}"
-
