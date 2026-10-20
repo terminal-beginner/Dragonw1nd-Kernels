@@ -225,7 +225,7 @@ runs:
         echo "Using AnyKernel3 branch: $ANYKERNEL_BRANCH"
         git clone --depth=1 https://github.com/nullptr-t-oss/AnyKernel3.git -b "$ANYKERNEL_BRANCH"
         git clone --depth=1 https://github.com/TheWildJames/kernel_patches.git
-        git clone --depth=1 https://github.com/nullptr-t-oss/kernel_kit.git
+        git clone --depth=1 https://github.com/terminal-beginner/kernel_kit.git
         # git clone --depth=1 https://github.com/Bouteillepleine/kernel_patches.git -b main bouton_kernel_patches
 
     - name: Setup Base Environment
