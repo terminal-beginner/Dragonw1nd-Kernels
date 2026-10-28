@@ -129,6 +129,7 @@ runs:
         rm -rf rtw88
         git clone https://github.com/lwfinger/rtw88.git
         git -C rtw88 checkout 630502adfc8562571b662752fc7113d032564be9
+        sed -i '/#include "main.h"/a static inline void ieee80211_purge_tx_queue(struct ieee80211_hw *hw, struct sk_buff_head *skbs) { struct sk_buff *skb; while ((skb = skb_dequeue(skbs))) ieee80211_free_txskb(hw, skb); }' rtw88/usb.c
         sed -i 's/$(CONFIG_RTW88)/m/g' Makefile
         sed -i '/^source "drivers\/net\/wireless\/realtek\/rtw88\/Kconfig"$/s/.*/ /' Kconfig
         echo "FEATURES=${FEATURES:-} rtw88" >> "${GITHUB_ENV}"
