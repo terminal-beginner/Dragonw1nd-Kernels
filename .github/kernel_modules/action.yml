@@ -128,6 +128,7 @@ runs:
         cd "${ROOT_DIR}/${KERNEL_DIR}/drivers/net/wireless/realtek/"
         rm -rf rtw88
         git clone https://github.com/lwfinger/rtw88.git
+        git -C rtw88 checkout 630502adfc8562571b662752fc7113d032564be9
         sed -i 's/$(CONFIG_RTW88)/m/g' Makefile
         sed -i '/^source "drivers\/net\/wireless\/realtek\/rtw88\/Kconfig"$/s/.*/ /' Kconfig
         echo "FEATURES=${FEATURES:-} rtw88" >> "${GITHUB_ENV}"
