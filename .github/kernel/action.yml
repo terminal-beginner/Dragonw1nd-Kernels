@@ -768,6 +768,37 @@ runs:
 
         echo "Other configs added ✅"
         echo "::endgroup::"
+       
+    - name: Add Battery Optimization Configs
+      shell: bash
+      run: |
+        set -euo pipefail
+        echo "::group::Adding battery optimization configs..."
+        cd "${ROOT_DIR}/common"
+
+        ./scripts/config --file arch/arm64/configs/kernel.config \
+          -e CONFIG_WQ_POWER_EFFICIENT_DEFAULT \
+          -e CONFIG_RCU_LAZY \
+          -d CONFIG_RCU_LAZY_DEFAULT_OFF \
+          -e CONFIG_CPU_IDLE_GOV_TEO \
+          -d CONFIG_CPU_IDLE_GOV_MENU \
+          -d CONFIG_UBSAN \
+          -d CONFIG_UBSAN_TRAP \
+          -d CONFIG_UBSAN_BOUNDS \
+          -d CONFIG_UBSAN_ARRAY_BOUNDS \
+          -d CONFIG_UBSAN_LOCAL_BOUNDS \
+          -d CONFIG_UBSAN_SANITIZE_ALL \
+          -d CONFIG_KFENCE \
+          -d CONFIG_WQ_WATCHDOG \
+          -d CONFIG_RCU_TRACE \
+          -d CONFIG_AUDITSYSCAL \
+          -d CONFIG_DEBUG_KINFO \
+          -d CONFIG_OPLUS_FEATURE_STORAGE_IO_METRICS \
+          -d CONFIG_OPLUS_FEATURE_FILE_MONITOR
+        echo "FEATURES=${FEATURES:-} battery" >> "${GITHUB_ENV}"
+
+        echo "Battery optimization configs added ✅"
+        echo "::endgroup::"
 
     - name: Add TTL Target Support
       shell: bash
