@@ -791,7 +791,7 @@ runs:
           -d CONFIG_KFENCE \
           -d CONFIG_WQ_WATCHDOG \
           -d CONFIG_RCU_TRACE \
-          -d CONFIG_AUDITSYSCAL \
+          -d CONFIG_AUDITSYSCALL \
           -d CONFIG_DEBUG_KINFO \
           -d CONFIG_OPLUS_FEATURE_STORAGE_IO_METRICS \
           -d CONFIG_OPLUS_FEATURE_FILE_MONITOR
