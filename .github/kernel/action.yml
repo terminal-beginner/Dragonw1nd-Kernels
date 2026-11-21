@@ -794,7 +794,8 @@ runs:
           -d CONFIG_AUDITSYSCALL \
           -d CONFIG_DEBUG_KINFO \
           -d CONFIG_OPLUS_FEATURE_STORAGE_IO_METRICS \
-          -d CONFIG_OPLUS_FEATURE_FILE_MONITOR
+          -d CONFIG_OPLUS_FEATURE_FILE_MONITOR \
+          -d CONFIG_CONT_PTE_HUGEPAGE 
         echo "FEATURES=${FEATURES:-} battery" >> "${GITHUB_ENV}"
 
         echo "Battery optimization configs added ✅"
