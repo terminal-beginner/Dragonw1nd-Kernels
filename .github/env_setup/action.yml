@@ -108,7 +108,7 @@ runs:
     - name: Setup SWAP
       uses: pierotofy/set-swap-space@master
       with:
-        swap-size-gb: 16
+        swap-size-gb: 20
 
     - name: Parse op_config_json
       shell: bash
